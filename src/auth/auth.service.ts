@@ -13,8 +13,7 @@ export interface TokenPayload {
 }
 
 @Injectable()
-export class AuthService {
-
+export class AuthService { 
     constructor(
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService
@@ -37,4 +36,10 @@ export class AuthService {
         })
     }
   
+    logout(response: Response) {
+        response.cookie('Authentication', '', {
+            httpOnly: true,
+            expires: new Date()
+        })
+    }
 }
